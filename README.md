@@ -28,6 +28,7 @@ The gaze estimation model requires three inputs (cropped from input stream via f
 ### Project Structure and files
 
 - ***Structure***
+```
 .
 ├── final-project
 │   ├── app-run.sh
@@ -89,6 +90,7 @@ The gaze estimation model requires three inputs (cropped from input stream via f
 │       └── mouse_controller.py
 ├── images
 └── README.md
+```
 
 - The *bin* folder contains the video for testing the presented code, where an instructor from the Udacity Edge AI nanodegree program making gaze and head movements for the control of the mouse cursor. 
 - The *models* folder contains all intel's pre-trained models required for the gaze tracking inference, each of them contains models with different precisions. 
