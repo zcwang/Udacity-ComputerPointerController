@@ -148,6 +148,12 @@ My HWs: Intel NUC (x1) + NCS2 (x1)
 
 Please use **app-run.sh** to launch demo in terminal after user login via window UI in X-server.
 
+E.g. 
+- app-run.sh CPU_CPU_CPU_CPU
+- app-run.sh GPU_GPU_GPU_GPU
+- app-run.sh CPU_GPU_GPU_MYRIAD
+- ...
+
 For example, do inference via CPU & GPU
 
     python3 src/main.py \
