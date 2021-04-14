@@ -78,7 +78,7 @@ def capture_stream(args):
 
     # only to use valid input file as selection
     if (args.input[-4:] not in valid_exts['video']) and (args.input[-4:] not in valid_exts['imgs']) and (args.input != 'cam'):
-        log.error(
+        log_object.error(
             "The selected input is no valid to be used on this program, try a different one.")
         sys.exit()
 
@@ -91,6 +91,7 @@ def doInferecneForInuptstream(args):
     models = [args.face_model, args.head_model,
               args.facial_landmark_model, args.gaze_model]
     marker = args.markers
+    log.basicConfig(level=log.DEBUG)
     log_object = log.getLogger()
 
     # Initialization for models needed for the inference
@@ -135,7 +136,7 @@ def doInferecneForInuptstream(args):
     # Reading frame from the used defined input
     for flag, frame in feed.next_batch():
         if not flag:
-            log.error("No detected frames as input source.")
+            log_object.info("No detected frames as input source.")
             break
 
         # Block that is repeated in the next part of the code ----------------------
@@ -148,7 +149,7 @@ def doInferecneForInuptstream(args):
 
             # Monitoring empty inferences to avoid errors
             if len(boxes) == 0:
-                log.error("No face detected.")
+                log_object.warning("No face detected.")
                 continue
             else:
                 # OpenVino selected models inferences and their times
@@ -173,7 +174,7 @@ def doInferecneForInuptstream(args):
 
         # Monitoring empty inferences to avoid errors
         if len(boxes) == 0:
-            log.error("No face detected.")
+            log_object.warning("No face detected.")
             continue
         else:
             frame_count += 1
