@@ -1,3 +1,6 @@
+
+
+
 # Computer Pointer Controller
 
 ### Introduction
@@ -148,12 +151,6 @@ My HWs: Intel NUC (x1) + NCS2 (x1)
 
 Please use **app-run.sh** to launch demo in terminal after user login via window UI in X-server.
 
-E.g. 
-- app-run.sh CPU_CPU_CPU_CPU
-- app-run.sh GPU_GPU_GPU_GPU
-- app-run.sh CPU_GPU_GPU_MYRIAD
-- ...
-
 For example, do inference via CPU & GPU
 
     python3 src/main.py \
@@ -208,7 +205,7 @@ For more information you can run  `python3 src/main.py -h`
 
 ## Benchmarks
 
-### CPU (Intel NUC w/ i7-10710U CPU @ 1.10GHz)
+### CPU (Intel NUC w/ i7-10710U CPU @ 1.10GHz) with FP16
 
 - *Device*
 
@@ -218,7 +215,7 @@ For more information you can run  `python3 src/main.py -h`
 
 ![alt text](./images/CPU-runtime-analysis.jpg)
 
-### Integrated GPU (Intel UHD Graphics 620)
+### Integrated GPU (Intel UHD Graphics 620) with FP16
 
 - *Device*
 
@@ -228,7 +225,7 @@ For more information you can run  `python3 src/main.py -h`
 
 ![alt text](./images/GPU-runtime-analysis.jpg)
 
-### CPU + GPU + VPU (MYRIAD NCS2 x1) 
+### CPU + GPU + VPU (MYRIAD NCS2 x1) with FP16
 
 - *Device*
 
@@ -238,7 +235,7 @@ For more information you can run  `python3 src/main.py -h`
 
 ![alt text](./images/CPU_GPU_GPU_MYRIAD-runtime-analysis.jpg)
 
-### GPU + CPU + VPU (MYRIAD NCS2 x1) 
+### GPU + CPU + VPU (MYRIAD NCS2 x1) with FP16
 
 - *Device*
 
@@ -248,7 +245,7 @@ For more information you can run  `python3 src/main.py -h`
 
 ![alt text](./images/GPU_CPU_CPU_MYRIAD-runtime-analysis.jpg)
 
-### VPU (MYRIAD NCS2 x1) + CPU + GPU
+### VPU (MYRIAD NCS2 x1) + CPU + GPU with FP16
 
 - *Device*
 
@@ -258,7 +255,7 @@ For more information you can run  `python3 src/main.py -h`
 
 ![alt text](./images/MYRIAD_CPU_CPU_GPU-runtime-analysis.jpg)
 
-### VPU (MYRIAD NCS2 x1) + CPU
+### VPU (MYRIAD NCS2 x1) + CPU with FP16
 
 - *Device*
 
@@ -268,9 +265,29 @@ For more information you can run  `python3 src/main.py -h`
 
 ![alt text](./images/MYRIAD_CPU_CPU_CPU-runtime-analysis.jpg)
 
+### Model Comparation with CPU (Intel NUC w/ i7-10710U CPU @ 1.10GHz) among FP32 and FP16
+
+- *Device*
+
+![alt text](./images/CPU-model-comparion-FP32-FP16.jpg)
+
+- *Summary*
+
+![alt text](./images/CPU-app-running-FP32-FP16)
+
+### Model Comparation with Integrated GPU (Intel UHD Graphics 620) with FP16 among FP32 and FP16
+
+- *Device*
+
+![alt text](./images/GPU-model-comparion-FP32-FP16.jpg)
+
+- *Summary*
+
+![alt text](./images/GPU-app-running-FP32-FP16.jpg)
+
 ## Results
 
-From above observations, the model with `FP16` in weight format has lowest model time. So I use it as baseline for comparting performance among CPU, GPU, and NCS2.
+In conclusion, we can see performance almost the same in all FP32/FP16-INT8/FP16 models but the model with `FP16` in weight format has lowest inference time. So I use it as baseline for comparting performance among CPU, GPU, and NCS2. BTW it is also surprised to me on model loading,  *model loading with FP32 format is faster than FP16's one*.
 
 It was observed in the ***Benchmarks*** section for performance, the *CPU* devices are faster than others. They load the model, make predictions and handle one input-output processing in the smallest times. The second-best device, in term of speed, is the *GPU*, however, the only real difference in terms of performance is it s model loading times, given that the inference and input-output times is small but suffers overhead of model loading. On the other hand, the *NSC2* devices used shows that it is possible to implement the desired task based on them. Nonetheless, its performance with single 1 NSC2 are not the most suitable devices for this project, at least only one VPU device is not enough capacity for inference in this program.
 
