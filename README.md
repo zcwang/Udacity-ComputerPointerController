@@ -287,7 +287,7 @@ For more information you can run  `python3 src/main.py -h`
 
 ## Results
 
-In conclusion, we can see performance almost the same in all FP32/FP16-INT8/FP16 models but the model with `FP16` in weight format has lowest inference time. So I use it as baseline for comparting performance among CPU, GPU, and NCS2. BTW it is also surprised to me on model loading,  *model loading with FP32 format is faster than FP16's one*.
+In conclusion, we can see overall performance almost the same in all FP32/FP16-INT8/FP16 models but the model with `FP16` in weight format has lowest inference time (especiall being sensitive for GPU's inference). So I use it as baseline for comparting performance among CPU, GPU, and NCS2. BTW it is also surprised me on model loading,  *model loading with FP32 format is faster than FP16's one*.
 
 It was observed in the ***Benchmarks*** section for performance, the *CPU* devices are faster than others. They load the model, make predictions and handle one input-output processing in the smallest times. The second-best device, in term of speed, is the *GPU*, however, the only real difference in terms of performance is it s model loading times, given that the inference and input-output times is small but suffers overhead of model loading. On the other hand, the *NSC2* devices used shows that it is possible to implement the desired task based on them. Nonetheless, its performance with single 1 NSC2 are not the most suitable devices for this project, at least only one VPU device is not enough capacity for inference in this program.
 
