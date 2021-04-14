@@ -273,7 +273,7 @@ For more information you can run  `python3 src/main.py -h`
 
 - *Summary*
 
-![alt text](./images/CPU-app-running-FP32-FP16)
+![alt text](./images/CPU-app-running-FP32-FP16.jpg)
 
 ### Model Comparation with Integrated GPU (Intel UHD Graphics 620) with FP16 among FP32 and FP16
 
