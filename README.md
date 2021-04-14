@@ -149,7 +149,7 @@ Next, the following OpenVINO pre-trained models are required to run this project
 My HWs: Intel NUC (x1) + NCS2 (x1)
 ![alt text](./images/myNSC2-with-NUC.jpg)
 
-Please use **app-run.sh** to launch demo in terminal after user login via window UI in X-server.
+Please use **app-run.sh** to launch demo in terminal after user login via window UI in X-server (app-run_FP16.sh or app-run_FP16.sh as example here).
 
 For example, do inference via CPU & GPU
 
